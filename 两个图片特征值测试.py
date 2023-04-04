@@ -1,9 +1,14 @@
 import cv2
+import numpy as np
+
 
 def is_same_image(img1_path, img2_path):
     # 读取图片
     img1 = cv2.imread(img1_path)
     img2 = cv2.imread(img2_path)
+
+    # 获取目标视频的宽度和高度
+    height, width, channels = img1.shape
 
     # 转换为灰度图
     gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -18,6 +23,13 @@ def is_same_image(img1_path, img2_path):
 
     # 创建BFMatcher对象
     bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=True)
+
+    # 计算两帧之间的帧间差分
+    gray1_resized = cv2.resize(gray1, (width, height))
+    gray2_resized = cv2.resize(gray2, (width, height))
+    # diff = cv2.absdiff(gray1_resized, gray2_resized)
+    diff = cv2.absdiff(gray1, gray2)
+    print('帧间差分：' + str(np.sum(diff)))
 
     # 匹配关键点
     matches = bf.match(des1, des2)
@@ -39,5 +51,6 @@ def is_same_image(img1_path, img2_path):
         return False
 
 
-tt = is_same_image('ad-pic.png', 'ad-pic1.png')
+# tt = is_same_image('ad-pic.png', 'ad-pic.png')
+tt = is_same_image('output/000018.jpg', 'output/000023.jpg')
 print(tt)
