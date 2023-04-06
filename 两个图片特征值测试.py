@@ -33,7 +33,6 @@ def is_same_image(img1_path, img2_path):
 
     # 匹配关键点
     matches = bf.match(des1, des2)
-    print(matches)
 
     # 计算匹配关键点的数量
     matches_num = len(matches)
@@ -52,5 +51,5 @@ def is_same_image(img1_path, img2_path):
 
 
 # tt = is_same_image('ad-pic.png', 'ad-pic.png')
-tt = is_same_image('output/000018.jpg', 'output/000023.jpg')
+tt = is_same_image('output/000000.jpg', 'output/000004.jpg')
 print(tt)

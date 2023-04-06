@@ -1,7 +1,7 @@
 import cv2
 
 # Load the ad video
-ad = cv2.VideoCapture("ad_sample.mp4")
+ad = cv2.VideoCapture("xiee.mp4")
 ad_fps = ad.get(cv2.CAP_PROP_FPS)
 
 # Initialize the SIFT detector and matcher
@@ -12,7 +12,7 @@ bf = cv2.BFMatcher()
 ad_kps, ad_descs = sift.detectAndCompute(ad.read()[1], None)
 
 # Load the live video
-live = cv2.VideoCapture("video.mp4")
+live = cv2.VideoCapture("xiee.mp4")
 
 while True:
     # Read a frame from the live video
